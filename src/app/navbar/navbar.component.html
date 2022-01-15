@@ -1,0 +1,24 @@
+<nav class="bg-light  py-2">
+  <div class="d-flex">
+    <h1 class="ms-5">{{ "title" | translate }}</h1>
+    <div class="ms-auto d-flex">
+      <div class="my-auto me-3">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          (change)="switchLang($event)"
+        >
+          <option selected value="ar">{{ "arabic" | translate }}</option>
+          <option value="en">{{ "english" | translate }}</option>
+        </select>
+      </div>
+
+      <button
+        class="btn btn-primary  ms-auto my-auto me-2"
+        (click)="logout()"
+      >
+        {{ "logout" | translate }}
+      </button>
+    </div>
+  </div>
+</nav>

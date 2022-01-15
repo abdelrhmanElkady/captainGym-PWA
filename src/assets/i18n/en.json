@@ -1,0 +1,28 @@
+{
+   "title":"Captain Gym",
+   "add-trainee":"add trainee",
+   "logout":"logout",
+   "ALL":"ALL",
+   "Expired":"Expired",
+   "Name":"Name",
+   "Months":"Months",
+   "StartDate":"Start Date",
+   "EndDate":"End Date",
+   "price":"price",
+   "Notes":"Notes",
+   "close":"Close",
+   "add":"ADD",
+   "Edit":"Edit",
+   "Delete":"Delete",
+   "download-excel":"download as excel",
+   "arabic":"arabic",
+   "english":"english",
+   "login":"login",
+   "enterEmailMssg":"please enter email & password",
+   "Email-address":"Email address",
+   "emailRequired":"*email is required*",
+   "Password":"Password",
+   "passwordRequired*":"*password is required*",
+   "Login":"Login"
+
+}

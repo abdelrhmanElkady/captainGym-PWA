@@ -1,0 +1,261 @@
+<app-navbar></app-navbar>
+<div class="my-4">
+  <div class="d-flex justify-content-around">
+    <form class="d-flex col-4">
+      <input
+        class="form-control"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        (keyup)="search($event)"
+      />
+    </form>
+    <div class="col-4 text-start">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        (change)="selectChangeHandler($event)"
+      >
+        <option selected value="all">{{ "ALL" | translate }}</option>
+        <option value="expired">{{ "Expired" | translate }}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<div class="text-center">
+  <button
+    type="button"
+    class="btn btn-primary mb-4"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    {{ "add-trainee" | translate }}
+  </button>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ "add-trainee" | translate }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="close()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="newTraineeForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">{{
+              "Name" | translate
+            }}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              aria-describedby="emailHelp"
+              formControlName="name"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                newTraineeForm.controls['name'].dirty &&
+                newTraineeForm.hasError('required', 'name')
+              "
+            >
+              *name is required*
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="months" class="form-label">{{
+              "Months" | translate
+            }}</label>
+            <input
+              type="number"
+              class="form-control"
+              id="months"
+              formControlName="numOfMonths"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                newTraineeForm.controls['numOfMonths'].dirty &&
+                newTraineeForm.hasError('required', 'numOfMonths')
+              "
+            >
+              *number of months is required*
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="startDate" class="form-label">{{
+              "StartDate" | translate
+            }}</label>
+            <input
+              type="date"
+              class="form-control"
+              id="startDate"
+              formControlName="startDate"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                newTraineeForm.controls['startDate'].dirty &&
+                newTraineeForm.hasError('required', 'startDate')
+              "
+            >
+              *start date is required*
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="endDate" class="form-label">{{
+              "EndDate" | translate
+            }}</label>
+            <input
+              type="date"
+              class="form-control"
+              id="endDate"
+              formControlName="endDate"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                newTraineeForm.controls['endDate'].dirty &&
+                newTraineeForm.hasError('required', 'endDate')
+              "
+            >
+              *end date is required*
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">{{
+              "price" | translate
+            }}</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                formControlName="price"
+              />
+            </div>
+            <p
+              class="text-danger"
+              *ngIf="
+                newTraineeForm.controls['price'].dirty &&
+                newTraineeForm.hasError('required', 'price')
+              "
+            >
+              *price is required*
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="notes" class="form-label">{{
+              "Notes" | translate
+            }}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="notes"
+              formControlName="notes"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          id="close"
+          (click)="close()"
+        >
+          {{ "close" | translate }}
+        </button>
+        <button
+          *ngIf="!editMode"
+          [disabled]="!newTraineeForm.valid"
+          type="button"
+          class="btn btn-primary"
+          (click)="addTrainee()"
+        >
+          {{ "add" | translate }}
+        </button>
+        <button
+          *ngIf="editMode"
+          type="button"
+          class="btn btn-primary"
+          (click)="editThisTrainee()"
+        >
+          {{ "Edit" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table" id="excel-table">
+    <thead>
+      <tr>
+        <th scope="col">{{ "Name" | translate }}</th>
+        <th scope="col">{{ "Months" | translate }}</th>
+        <th scope="col">{{ "StartDate" | translate }}</th>
+        <th scope="col">{{ "EndDate" | translate }}</th>
+        <th scope="col">{{ "price" | translate }}</th>
+        <th scope="col">{{ "Notes" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let trainee of filteredTrainees"
+        [ngClass]="{ expired: trainee.expired }"
+      >
+        <td>{{ trainee.name }}</td>
+        <td>{{ trainee.months }}</td>
+        <td>{{ trainee.startDate | date: "dd/M/yyyy" }}</td>
+        <td>{{ trainee.endDate | date: "dd/M/yyyy" }}</td>
+        <td>{{ trainee.price }}</td>
+        <td>{{ trainee.notes }}</td>
+
+        <td class="editDelete">
+          <button
+            class="btn btn-primary me-3"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="onEdit(trainee)"
+          >
+            {{ "Edit" | translate }}
+          </button>
+          <button
+            class="btn btn-danger deleteBtn"
+            (click)="deleteThisTrainee(trainee)"
+          >
+            {{ "Delete" | translate }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="text-center mt-3">
+  <button class="btn btn-warning text-white" (click)="exportexcel()">
+    {{ "download-excel" | translate }}
+  </button>
+</div>
+<app-footer></app-footer>

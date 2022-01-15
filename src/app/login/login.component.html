@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="card col-sm-6 p-3">
+          <h3 class="text-center text-white"> {{'login' | translate }}</h3>
+          <p class="text-center text-white"> {{'enterEmailMssg' | translate }}</p>
+          <form [formGroup] = 'loginForm' (ngSubmit)='login()'>
+              <div class="mb-3">
+                <label for="email" class="form-label text-white">{{'Email-address' | translate }}</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName = 'email'>
+                <p class="text-danger" *ngIf = "loginForm.controls['email'].dirty && loginForm.hasError('required','email') ">{{'emailRequired' | translate }}</p>
+                
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label text-white">{{'Password' | translate }}</label>
+                <input type="password" class="form-control" id="password" formControlName = 'password' autocomplete="on">
+                <p class="text-danger" *ngIf = "loginForm.controls['password'].dirty && loginForm.hasError('required','password') ">{{'passwordRequired' | translate }}</p>
+  
+              </div>
+             <div class="w-100 text-center pt-3">
+              <button type="submit" class="btn btn-primary " [disabled] = '!loginForm.valid' >{{'Login' | translate }}</button>
+  
+             </div>
+             
+             
+            </form>
+      </div>
+    </div>
+  </div>
+  
