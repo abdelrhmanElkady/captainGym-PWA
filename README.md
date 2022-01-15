@@ -2,6 +2,8 @@
 crud system using angular with LocalStorage to add,delete,update and display trainee for trainees ,
 it is also a PWA(progressive web application) to take advantage of both web and native app features.
 
+# Live-Demo 
+https://captaingym.netlify.app/
 
 # CaptainGym
 
