@@ -1,0 +1,28 @@
+{
+    "title":"كابتن جيم",
+    "add-trainee":"اضافة متدرب",
+    "logout":"الخروج",
+    "ALL":"الجميع",
+   "Expired":"المنتهى",
+    "Name":"الاسم",
+    "Months":"عدد الشهور",
+    "StartDate":"تاريخ البداية",
+    "EndDate":"تاريخ النهاية",
+    "price":"المبلغ",
+    "Notes":"ملاحظات",
+    "close":"إغلاق",
+    "add":"إضافة",
+    "Edit":"تعديل",
+    "Delete":"مسح",
+    "download-excel":"تحميل اكسيل",
+    "arabic":"عربى",
+    "english":"انجليزى",
+    "login":"الدخول",
+    "enterEmailMssg":"من فضلك ادخل البريد والرقم السرى",
+    "Email-address":"الايميل",
+    "emailRequired":"*الايميل مطلوب*",
+    "Password":"الرقم السرى",
+    "passwordRequired*":"*الرقم السرى مطلوب*",
+    "Login":"Login"
+ 
+ }
