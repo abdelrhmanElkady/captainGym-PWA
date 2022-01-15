@@ -1,4 +1,9 @@
 # CaptainGym
+crud system using angular with LocalStorage to add,delete,update and display trainee for trainees ,
+it is also a PWA(progressive web application) to take advantage of both web and native app features.
+
+
+# CaptainGym
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
